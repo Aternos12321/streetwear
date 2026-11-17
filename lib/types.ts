@@ -1,0 +1,12 @@
+export type Category = 'shoes'|'clothing'|'accessories'|'other';
+export type Product = { id:string; slug:string; name:string; brand:string; category:Category; price:number; original_price:number|null; description:string; images:string[]; sizes:Record<string,number>; colors:string[]; is_new:boolean; is_featured:boolean; is_best_seller:boolean; sold_out:boolean; published:boolean; popularity:number; created_at:string };
+export type Settings = { store_name:string; instagram_username:string; contact_email:string; contact_phone:string; contact_address:string; announcement:string; delivery:string; returns:string; privacy:string; terms:string; faq:string };
+export const CATEGORIES: [Category,string][] = [['shoes','Shoes'],['clothing','Clothing'],['accessories','Accessories'],['other','Other']];
+const ORDER = ['XXS','XS','S','M','L','XL','XXL','XXXL'];
+export const sortSizes = (a:string,b:string) => { const ia=ORDER.indexOf(a.toUpperCase()), ib=ORDER.indexOf(b.toUpperCase()); if(ia>-1&&ib>-1) return ia-ib; return a.localeCompare(b,undefined,{numeric:true}); };
+export const totalStock = (p:Product) => Object.values(p.sizes||{}).reduce((a,b)=>a+Number(b||0),0);
+export const inStock = (p:Product) => !p.sold_out && totalStock(p) > 0;
+export const sizeList = (p:Product) => Object.entries(p.sizes||{}).filter(([,q])=>Number(q)>0).map(([s])=>s).sort(sortSizes);
+export const ron = (n:number) => new Intl.NumberFormat('ro-RO',{maximumFractionDigits:2}).format(Number(n)) + ' RON';
+export const discount = (p:Product) => p.original_price && p.original_price > p.price ? Math.round((1 - p.price/p.original_price)*100) : 0;
+export const isLimited = (p:Product) => inStock(p) && totalStock(p) <= 3;

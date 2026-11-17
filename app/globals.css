@@ -1,0 +1,14 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+html{scroll-behavior:smooth} body{background:#fff;color:#000;font-family:var(--f-body),system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.disp{font-family:var(--f-disp),Impact,sans-serif;font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.9}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:#000;color:#fff;padding:.95rem 1.6rem;font-weight:700;letter-spacing:.01em;transition:background .15s,transform .15s}
+.btn:hover{background:#2A3DFF} .btn:active{transform:scale(.98)} .btn:disabled{background:#c9c9c9;cursor:not-allowed}
+.btn-line{background:transparent;color:#000;border:1.5px solid #000} .btn-line:hover{background:#000;color:#fff}
+.chip{min-width:3rem;padding:.65rem .8rem;border:1.5px solid #d4d4d4;font-weight:600;text-align:center;transition:border-color .12s}
+.chip:hover:not(:disabled){border-color:#000} .chip[aria-pressed=true]{background:#000;color:#fff;border-color:#000} .chip:disabled{color:#bbb;text-decoration:line-through;cursor:not-allowed}
+.field{width:100%;border:1.5px solid #d4d4d4;padding:.7rem .8rem;background:#fff} .field:focus{outline:none;border-color:#000}
+:focus-visible{outline:2px solid #2A3DFF;outline-offset:2px}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}} .page{animation:rise .35s ease-out}
+@keyframes hero{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}} .hero-line{animation:hero .8s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.prose-s p{margin:0 0 1rem;line-height:1.65;max-width:68ch;white-space:pre-line}
